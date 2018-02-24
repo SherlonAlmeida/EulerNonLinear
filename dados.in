@@ -1,0 +1,27 @@
+ &grid
+ imax  = 441
+ jmax  = 441
+ maxit = 20000
+ dt    = 0.0050
+ &end
+
+ &freeadm
+ mmin  = -1.5d0
+ mmax  =  9.5d0
+ nmin  = -1.1d0
+ nmax  =  1.1d0
+ &end
+
+ &pmlgrid
+ imaxpml  = 20
+ jmaxpml  = 20
+ D        = 20
+ sigmamx  = 20.0d0
+ sigmamy  = 20.0d0
+ sigmamxc = 20.0d0
+ sigmamyc = 20.0d0
+ alpha    = 4.d0 
+ c0       = -1.400d0
+ delta    = 0.010d0
+&end
+
