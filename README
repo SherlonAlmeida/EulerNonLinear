@@ -1,0 +1,13 @@
+Modificações Realizadas:
+    Esta é a pasta com o desenvolvimento da otimização/paralelização do código sequencial
+    Foi inserido o código geraPlotagem.py para gerar o script GNUPLOT (vorticidadeDinamico.gnu) automaticamente
+    O arquivo geraPlotagem.py pega o dado maxit de dados.in, onde 50 quer dizer 1 só execução
+    Foi inserido o script runDinamico.sh para executar e coletar todas informações automaticamente e salvar em uma pasta "Resultados"
+    Foi alterado o nome de arquivo de saida de out.f90 para "contorno_.dat"
+    Comentei o gerador do arquivo fort.99999, pois não havia isso na versão mais recente em MPI
+    Modifiquei os nomes dos arquivos (fort.100000, fort.100001, fort.100002) para temp_D60.dat igual na versão mais recente em MPI
+    Adicionei o arquivo tempototal_D60.dat que existe na versão mais recente em MPI
+Modificações a serem feitas:
+    Inserir novas equações ............................NÃO REALIZADA
+    Executar versão sequencial ........................PRONTO
+    Paralelizar com OpenMP + CUDA .....................NÃO REALIZADA
