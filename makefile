@@ -5,12 +5,12 @@ objects = global.o  globalq.o global2.o init.o cc.o diff.o \
           derivs.o  eqpml.o eqeuler.o rkpml.o \
           rhs.o rhsq.o outt.o filtering.o euler.o 
 
-f90comp = gfortran
+f90comp = gfortran -O3
 
 # Makefile
 
 euler: $(objects)
-	$(f90comp) -o euler $(objects)
+	$(f90comp) -pg -o euler $(objects) # -pg habilita o Gprof
 	
 global.o:  global.f90
 	$(f90comp) -c global.f90
@@ -60,9 +60,8 @@ euler.o: global.o globalq.o init.o filtering.o outt.o  rkpml.o   euler.f90
 # Cleaning everything
 clean:
 	#rm MOD1.mod FLAT
-	rm $(objects)
 	rm -f *.o 
-	rm -f fort.* 
-	rm -f *.mod 
+	rm -f *.mod
+	rm euler
 
 # End of the makefile

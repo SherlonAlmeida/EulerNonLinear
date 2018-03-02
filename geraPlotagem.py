@@ -1,0 +1,58 @@
+arquivo = "dados.in"
+with open(arquivo, 'r') as arq: #Abre e ja fecha o arquivo
+	entrada = arq.readlines() 	#Le todas linhas do arquivo
+	aux = list(entrada[3].split()) #Quebra strings
+	numExecucao = int(int(aux[2])/50) #Converte pra inteiro o numero de execucoes
+
+nomeArquivo = "vorticidadeDinamico.gnu"
+arq = open(nomeArquivo, 'w')
+arq.write('reset\n')
+arq.write('set term jpeg enhanced large font times 20 lw 2 size 1200,800\n')
+arq.write('#set term jpeg enhanced  size 1200,1200\n')
+arq.write('#set key at 2.4,1.35\n')
+arq.write('#set key at 2.4,1.35\n')
+arq.write('set key samplen 1\n')
+arq.write('set key spacing 1\n')
+arq.write('#set key font ",20"\n')
+arq.write('set key outside\n') 
+arq.write('set zero 1e-12\n')
+arq.write('set size ratio 0.2\n')
+arq.write('set palette defined ( 0 "#7f0000",\\\n')
+arq.write('                      1 "#ee0000",\\\n')
+arq.write('                      2 "#ff7000",\\\n')
+arq.write('                      3 "#ffee00",\\\n')
+arq.write('                      4 "#90ff70",\\\n')
+arq.write('                      5 "#0fffee",\\\n')
+arq.write('                      6 "#0090ff",\\\n')
+arq.write('                      7 "#000fff",\\\n')
+arq.write('                      8 "#000090")\n')
+arq.write('set cbrange [-2.0:1.0]\n')
+arq.write('#set cbrange [0.5:4.2]\n')
+arq.write('#set cbrange [-10:0]\n')
+arq.write('#set xlabel font \'100\'\n')
+arq.write('#set cblabel font \'100\'\n')
+arq.write('#show cblabel\n')
+arq.write('#set contour base\n')
+arq.write('set cntrparam levels auto 20\n')
+arq.write('# discrete 0.06,0.05,0.04,0.03,0.02,0.01,0.001,-0.01,-0.02,-0.03,-0.04,-0.05 #\n')
+arq.write('#set cntrparam levels  increment 0.80,0.005,1.05\n')
+arq.write('#set cntrparam levels  increment 0.80,0.005,1.05\n')
+arq.write('#set cbtics 0.05\n')
+arq.write('#set xrange[044:48]\n')
+arq.write('set xrange[00:15]\n')
+arq.write('set yrange[-2.5:2.5]\n')
+arq.write('set isosamples 10000\n')
+arq.write('set hidden3d\n')
+arq.write('set pm3d\n')  
+arq.write('#set dgrid3d\n')  
+arq.write('set view map\n')
+arq.write('unset surface\n')
+arq.write('set nokey\n')
+arq.write('set title \'Vorticity Countours Subsonic Mixing Layer\'\n')
+arq.write('#set key horizontal outside\n')
+
+for i in range(0, numExecucao):
+	arq.write("set output 'subsonic" + str(i) + ".jpeg'\n")
+	arq.write("splot 'contorno_" + str(i) + ".dat'  u 1:2:7  w pm3d\n")
+	
+arq.close()

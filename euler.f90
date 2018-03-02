@@ -36,6 +36,16 @@ use rk
       real ::timei,timef
       real(kind=ip)::t
       real(kind=ip),dimension(4,im,jm):: U
+      character(40) :: temporalfile1,temporalfile2,temporalfile3
+      
+      write (temporalfile1,'("temp1_D60.dat")') 
+      open(unit=1000,file=temporalfile1,status='unknown')
+
+      write (temporalfile2,'("temp2_D60.dat")') 
+      open(unit=1001,file=temporalfile2,status='unknown')
+        
+      write (temporalfile3,'("temp3_D60.dat")') 
+      open(unit=1002,file=temporalfile3,status='unknown')
       
       call CPU_TIME(timei)
       
@@ -78,16 +88,24 @@ use rk
              cf=0
          end if
 
-     !    write(100001,*)dt*iter,U(4,206,26),u(3,206,26)
-         write(100001,*)dt*iter,U(4,411,221),u(3,411,221)
-!         write(100002,*)dt*iter,U(4,206,56),u(3,206,56)
+         write(1000,*)dt*iter,U(4,206,26),u(3,206,26)
+         write(1001,*)dt*iter,U(4,411,221),u(3,411,221)
+         write(1002,*)dt*iter,U(4,206,56),u(3,206,56)
 
          cf=cf+1
 
       end do 
 
+         close(unit=1000)
+         close(unit=1001)
+         close(unit=1002)
+
       call CPU_TIME(timef) 
-      write(*,*)'Tempo :',timef-timei,'segundos'
+      
+      open(unit=10,file="tempototal_D60.dat",status='unknown')
+      write(*,*) 'Tempo :',timef-timei,'segundos'
+      write(10,*)'Tempo :',timef-timei,'segundos',',dx=dy=',dm
+      close(unit=10)
 
 end program EULER
 

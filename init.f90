@@ -130,7 +130,7 @@ do j=1,jmax
 !  uba(j)   = 0.5d0*(u1b+u2b+(u1b-u2b)*tanh(2.d0*n(j)/gama))-0.5d0*(1.d0-(tanh((2.d0*n(j)/gama)))**2)
    Tb(j)   = T1*(uba(j)-u2b)/(u1b-u2b)+T2*(u1b-uba(j))/(u1b-u2b)+(lamda-1.d0)/2.d0*(u1b-Uba(j))*(uba(j)-u2b)
    rhob(j) = 1.d0/(Tb(j))
-   write(99999,*)n(j),uba(j)
+   !write(99999,*)n(j),uba(j) !Sherlon: Comentei isso pois nao tinha no com MPI
 end do
  !  write(*,*)n(1),n(jmax),uba(1),uba(jmax)
 !............................zerando as variaveis......................
